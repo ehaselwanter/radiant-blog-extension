@@ -14,6 +14,8 @@ class BlogExtension < Radiant::Extension
     if Page.table_exists? #allow bootstrapping
       Page.send :include, AuthorTags
       Page.send :include, SiblingTags
+      Page.send :include, BlogTags
+      
       User.class_eval {
         has_many :pages, :foreign_key => :created_by_id unless self.respond_to?(:pages)
       }
